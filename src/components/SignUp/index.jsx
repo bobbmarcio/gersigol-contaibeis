@@ -48,6 +48,7 @@ export default function SignUp(props) {
                         <TextField
                             id="email"
                             label="E-mail"
+                            required={true}
                             type="email"
                             variant="outlined"
                             margin={"normal"}
@@ -58,6 +59,7 @@ export default function SignUp(props) {
                         <TextField
                             id="password"
                             label={"Senha"}
+                            required={true}
                             type={"password"}
                             variant={"outlined"}
                             margin={"normal"}

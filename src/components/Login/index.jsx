@@ -2,10 +2,11 @@ import React, {useState} from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import {Button, Stack, TextField, Box, Alert, Snackbar} from "@mui/material";
 import {switchOverFirebaseErrors} from "../../utils/FirebaseErrorCodes";
-import {Link} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Login(props) {
     const {auth} = props
+    let navigate = useNavigate();
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -15,6 +16,10 @@ export default function Login(props) {
 
     const handleSnackBar = () => {
         setShowSnackbar(!showSnackbar)
+    }
+
+    function handleClick(path) {
+        navigate(path);
     }
 
     const loginUser = (auth, email, password) => {
@@ -44,11 +49,12 @@ export default function Login(props) {
                    }
                }
            >
-               <Box sx={{ width: '20%', padding: 10 }} >
+               <Box sx={{ width: '50%', padding: 10 }} >
                    <Stack spacing={2}>
                        <TextField
                            id="email"
                            label="E-mail"
+                           required={true}
                            type="email"
                            variant="outlined"
                            margin={"normal"}
@@ -59,6 +65,7 @@ export default function Login(props) {
                        <TextField
                            id="password"
                            label={"Senha"}
+                           required={true}
                            type={"password"}
                            variant={"outlined"}
                            margin={"normal"}
@@ -73,15 +80,14 @@ export default function Login(props) {
                        >
                            Login
                        </Button>
-                       <Link to="/signup">
-                           <Button
-                               type="button"
-                               variant="outlined"
-                               color="secondary"
-                           >
-                               Cadastrar-se
-                           </Button>
-                       </Link>
+                       <Button
+                           type="button"
+                           variant="contained"
+                           color="info"
+                           onClick={() => handleClick("signup")}
+                       >
+                           Cadastrar-se
+                       </Button>
                    </Stack>
                </Box>
            </form>
