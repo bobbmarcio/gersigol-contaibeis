@@ -43,7 +43,7 @@ export default function SignUp(props) {
                     }
                 }
             >
-                <Box sx={{ width: '20%', padding: 10 }} >
+                <Box sx={{ width: '50%', padding: 10 }} >
                     <Stack spacing={2}>
                         <TextField
                             id="email"
