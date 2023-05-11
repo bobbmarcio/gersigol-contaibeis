@@ -3,6 +3,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import {Button, Stack, TextField, Box, Alert, Snackbar} from "@mui/material";
 import {switchOverFirebaseErrors} from "../../utils/FirebaseErrorCodes";
 import {Link} from "react-router-dom";
+import ButtonAppBar from "../AppBar";
 
 export default function Login(props) {
     const {auth} = props
@@ -36,6 +37,7 @@ export default function Login(props) {
 
     return(
         <>
+            <ButtonAppBar/>
            <form
                onSubmit={
                    (event) =>{
