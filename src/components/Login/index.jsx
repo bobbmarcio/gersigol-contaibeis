@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import {Button, Stack, TextField, Box, Alert, Snackbar} from "@mui/material";
 import {switchOverFirebaseErrors} from "../../utils/FirebaseErrorCodes";
+import {Link} from "react-router-dom";
 
 export default function Login(props) {
     const {auth} = props
@@ -72,6 +73,15 @@ export default function Login(props) {
                        >
                            Login
                        </Button>
+                       <Link to="/signup">
+                           <Button
+                               type="button"
+                               variant="outlined"
+                               color="secondary"
+                           >
+                               Cadastrar-se
+                           </Button>
+                       </Link>
                    </Stack>
                </Box>
            </form>
