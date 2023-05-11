@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import {Button, Stack, TextField, Box, Alert, Snackbar} from "@mui/material";
 import {switchOverFirebaseErrors} from "../../utils/FirebaseErrorCodes";
 
@@ -19,7 +19,11 @@ export default function SignUp(props) {
     const createUser = (auth, email, password) => {
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                const user = userCredential.user;
+                const user = userCredential.user
+                sendEmailVerification(auth.currentUser)
+                    .then(() => {
+                        console.log("Confirmação enviada")
+                    });
                 setAlertMessage("Cadastro realizado com sucesso. Bem-vindo, "+user.email)
                 setAlertSeverity("success")
                 handleSnackBar()
