@@ -21,6 +21,8 @@ export default function Login(props) {
     function handleClick(path) {
         navigate(path);
     }
+    
+    //TODO: useEfect when user exist, enviar para a rota de declaracao
 
     const loginUser = (auth, email, password) => {
         signInWithEmailAndPassword(auth, email, password)
