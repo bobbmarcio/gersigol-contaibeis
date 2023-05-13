@@ -7,12 +7,17 @@ import Declaration from "./components/Declaration"
 export default function AppRouter() {
 
     const auth = FirebaseConfig()
+
+    function whenSubmitForm(dados) {
+        console.log(dados)
+    }
+
     return(
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Login auth={auth} />} />
                 <Route path="/signup" element={<SignUp auth={auth} />} />
-                <Route path="createDeclaration" element={<Declaration />} />
+                <Route path="createDeclaration" element={<Declaration whenSubmit={whenSubmitForm} />} />
             </Routes>
         </BrowserRouter>
     )
