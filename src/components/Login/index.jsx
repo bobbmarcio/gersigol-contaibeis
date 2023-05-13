@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import {Button, Stack, TextField, Box, Alert, Snackbar} from "@mui/material";
 import {switchOverFirebaseErrors} from "../../utils/FirebaseErrorCodes";
@@ -13,6 +13,7 @@ export default function Login(props) {
     const [showSnackbar, setShowSnackbar] = useState(false)
     const [alertMessage, setAlertMessage] = useState("")
     const [alertSeverity, setAlertSeverity] = useState("")
+    const [user, setUser] = useState()
 
     const handleSnackBar = () => {
         setShowSnackbar(!showSnackbar)
@@ -23,11 +24,17 @@ export default function Login(props) {
     }
     
     //TODO: useEfect when user exist, enviar para a rota de declaracao
+    useEffect(() => {
+        if(user){
+            handleClick("createDeclaration")
+        }
+    })
 
     const loginUser = (auth, email, password) => {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
+                setUser(user)
                 setAlertMessage("Login realizado com sucesso. Bem-vindo, "+user.email)
                 setAlertSeverity("success")
                 handleSnackBar()
