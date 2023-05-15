@@ -1,4 +1,4 @@
-import { Step, StepLabel, Stepper, Typography } from "@mui/material";
+import { Step, StepLabel, Stepper, Typography, Container } from "@mui/material";
 import { useState, useEffect } from "react";
 import PersonalData from "../Forms/PersonalData";
 
@@ -13,6 +13,8 @@ export default function Declaration({whenSubmit}) {
 
     const formularios = [
         <PersonalData aoEnviar={collectData}/>,
+        <Typography variant="h5">Envie o demonstrativo de rendimento</Typography>,
+        <Typography variant="h5">Envie os gastos com saúde</Typography>,
         <Typography variant="h5">Declaração cadastrada com sucesso!</Typography>
     ]
 
@@ -26,15 +28,13 @@ export default function Declaration({whenSubmit}) {
     }
 
   return (
-      <>
+      <Container>
         <Stepper activeStep={activeStep}>
-          <Step>
-            <StepLabel>Dados pessoais</StepLabel>
-            <StepLabel>Dados 1</StepLabel>
-            <StepLabel>Dados 2</StepLabel>
-          </Step>
+            <Step><StepLabel>Dados pessoais</StepLabel></Step>
+            <Step><StepLabel>Demonstrativo de rendimento</StepLabel></Step>
+            <Step><StepLabel>Gastos com saúde</StepLabel></Step>
         </Stepper>
         {formularios[activeStep]}
-      </>
+      </Container>
   );
 }

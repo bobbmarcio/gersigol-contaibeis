@@ -6,7 +6,6 @@ import useErros from "../../utils/useErros"
 
 function PersonalData({aoEnviar}) {
     const [nome, setNome] = useState("")
-    const [sobrenome, setSobrenome] = useState("")
     const [cpf, setCpf] = useState("")
     const validacoes = useContext(ValidacoesCadastro)
     const [erros, validarCampos, possoEnviar] = useErros(validacoes)
@@ -16,7 +15,7 @@ function PersonalData({aoEnviar}) {
             onSubmit={(event) => {
                 event.preventDefault()
                 if (possoEnviar()){
-                    aoEnviar({nome, sobrenome, cpf})
+                    aoEnviar({nome, cpf})
                 }
             }}>
             <TextField
@@ -29,20 +28,11 @@ function PersonalData({aoEnviar}) {
                 helperText={erros.nome.texto}
                 id="nome"
                 name="nome"
-                label="Nome"
+                label="Nome completo"
                 variant="outlined"
                 margin="normal"
                 fullWidth
-            />
-            <TextField
-                value={sobrenome}
-                onChange={event => {
-                    setSobrenome(event.target.value)
-                }}
-                id="sobrenome"
-                label="Sobrenome"
-                margin="normal"
-                fullWidth
+                required={true}
             />
             <TextField
                 value={cpf}
@@ -58,6 +48,7 @@ function PersonalData({aoEnviar}) {
                 type="number"
                 margin="normal"
                 fullWidth
+                required={true}
             />
             <Button type="submit" variant="contained" color="primary">
                 Próximo
