@@ -34,7 +34,7 @@ export default function Login(props) {
         if(user){
             handleClick("createDeclaration")
         }
-    }, [user])
+    })
 
     const loginUser = (auth, email, password) => {
         signInWithEmailAndPassword(auth, email, password)
