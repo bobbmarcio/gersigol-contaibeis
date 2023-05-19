@@ -1,6 +1,7 @@
 import { Step, StepLabel, Stepper, Typography, Container } from "@mui/material";
 import { useState, useEffect } from "react";
 import PersonalData from "../Forms/PersonalData";
+import IncomeDemonstrative from "../Forms/IncomeDemonstrative";
 
 export default function Declaration({whenSubmit}) {
   const [activeStep, setActiveStep] = useState(0);
@@ -13,7 +14,7 @@ export default function Declaration({whenSubmit}) {
 
     const formularios = [
         <PersonalData aoEnviar={collectData}/>,
-        <Typography variant="h5">Envie o demonstrativo de rendimento</Typography>,
+        <IncomeDemonstrative aoEnviar={collectData} />,
         <Typography variant="h5">Envie os gastos com saúde</Typography>,
         <Typography variant="h5">Declaração cadastrada com sucesso!</Typography>
     ]

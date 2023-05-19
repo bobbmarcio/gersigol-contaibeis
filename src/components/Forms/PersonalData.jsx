@@ -1,6 +1,5 @@
 import React, {useState, useContext} from "react";
 import {Button, TextField} from "@mui/material";
-// import {validarCpf} from "../../utils/cadastro";
 import ValidacoesCadastro from "../../utils/ValidacoesCadastro";
 import useErros from "../../utils/useErros"
 
