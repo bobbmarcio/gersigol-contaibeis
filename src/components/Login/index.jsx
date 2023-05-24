@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import React, {useState, useEffect} from "react";
+import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import {Button, Stack, TextField, Box, Alert, Snackbar} from "@mui/material";
 import {switchOverFirebaseErrors} from "../../utils/FirebaseErrorCodes";
 import { useNavigate } from "react-router-dom";
@@ -13,6 +13,13 @@ export default function Login(props) {
     const [showSnackbar, setShowSnackbar] = useState(false)
     const [alertMessage, setAlertMessage] = useState("")
     const [alertSeverity, setAlertSeverity] = useState("")
+    const [user, setUser] = useState()
+
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            setUser(user)
+        }
+    });
 
     const handleSnackBar = () => {
         setShowSnackbar(!showSnackbar)
@@ -22,10 +29,18 @@ export default function Login(props) {
         navigate(path);
     }
 
+    //TODO: useEfect when user exist, enviar para a rota de declaracao
+    useEffect(() => {
+        if(user){
+            handleClick("createDeclaration")
+        }
+    })
+
     const loginUser = (auth, email, password) => {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
+                setUser(user)
                 setAlertMessage("Login realizado com sucesso. Bem-vindo, "+user.email)
                 setAlertSeverity("success")
                 handleSnackBar()
